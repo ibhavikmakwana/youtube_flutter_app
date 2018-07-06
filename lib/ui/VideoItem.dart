@@ -7,88 +7,85 @@ class VideoItem extends StatelessWidget {
   }
 
   Widget _buildTiles(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        new ListTile(
-          title: Card(
-            elevation: 8.0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
+    return new ListTile(
+      title: Card(
+        margin: EdgeInsets.zero,
+        elevation: 8.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: FlutterLogo(
+                size: 200.0,
+              ),
+              elevation: 8.0,
+              margin: EdgeInsets.zero,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 16.0,
+                    left: 8.0,
+                    right: 8.0,
+                    bottom: 8.0,
                   ),
-                  child: FlutterLogo(
-                    size: 200.0,
+                  child: CircleAvatar(
+                    child: new FlutterLogo(),
+                    backgroundColor: Colors.redAccent,
                   ),
-                  elevation: 8.0,
-                  margin: EdgeInsets.zero,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 16.0,
-                        left: 8.0,
-                        right: 8.0,
-                        bottom: 8.0,
-                      ),
-                      child: CircleAvatar(
-                        child: new FlutterLogo(),
-                        backgroundColor: Colors.redAccent,
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              top: 16.0,
-                              left: 8.0,
-                              right: 8.0,
-                            ),
-                            child: Text(
-                              "Avengers Infinity war",
-                              overflow: TextOverflow.ellipsis,
-                              softWrap: true,
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 16.0,
+                          left: 8.0,
+                          right: 8.0,
+                        ),
+                        child: Text(
+                          "Avengers Infinity war",
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: true,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 8.0,
-                              right: 8.0,
-                              bottom: 8.0,
-                            ),
-                            child: Text(
-                              "Avengers Infinity war",
-                              softWrap: true,
-                              maxLines: 2,
-                              style: TextStyle(fontSize: 12.0),
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 8.0,
+                          right: 8.0,
+                          bottom: 8.0,
+                        ),
+                        child: Text(
+                          "Avengers Infinity war",
+                          softWrap: true,
+                          maxLines: 2,
+                          style: TextStyle(fontSize: 12.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ),
-        )
-      ],
+          ],
+        ),
+      ),
     );
   }
 }

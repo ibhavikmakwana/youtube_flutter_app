@@ -9,11 +9,9 @@ class VideosListWidget extends StatefulWidget {
 class _VideosListWidgetState extends State<VideosListWidget> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: new ListView.builder(
-        itemBuilder: (BuildContext context, int index) => new VideoItem(),
-        itemCount: 10,
-      ),
+    return new ListView.builder(
+      itemBuilder: (BuildContext context, int index) => new VideoItem(),
+      itemCount: 10,
     );
   }
 }

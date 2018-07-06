@@ -10,7 +10,7 @@ class _AppBarState extends State<AppBarWidget> {
   Widget build(BuildContext context) {
     return new Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-      margin: EdgeInsets.only(top: 8.0,right: 16.0, left: 16.0),
+      margin: EdgeInsets.only(top: 8.0, right: 16.0, left: 16.0),
       child: new AppBar(
         title: Row(
           children: <Widget>[
@@ -27,15 +27,24 @@ class _AppBarState extends State<AppBarWidget> {
         backgroundColor: Colors.white,
         actions: <Widget>[
           new IconButton(
-            icon: new Icon(Icons.videocam),
+            icon: Image.asset(
+              "assets/images/videocam.png",
+            ),
             onPressed: () {},
           ),
           new IconButton(
-            icon: new Icon(Icons.search),
+            icon: Image.asset(
+              "assets/images/search.png",
+            ),
             onPressed: () {},
           ),
           new IconButton(
-            icon: new Icon(Icons.person),
+            icon: CircleAvatar(
+              child: new FlutterLogo(
+                size: 18.0,
+              ),
+              backgroundColor: Colors.red,
+            ),
             onPressed: () {},
           ),
         ],

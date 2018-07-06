@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_flutter_app/ui/VideoItem.dart';
 import 'package:youtube_flutter_app/ui/app_bar.dart';
-import 'package:youtube_flutter_app/ui/videos_list_widget.dart';
 
 void main() => runApp(new MyApp());
 
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter Demo',
       theme: new ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: new MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -41,9 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 11.0,
               ),
             ),
-            icon: Icon(
-              Icons.home,
-              color: Colors.black54,
+            icon: Image.asset(
+              "assets/images/home.png",
+              height: 24.0,
+              width: 24.0,
             ),
           ),
           BottomNavigationBarItem(
@@ -53,9 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 11.0,
               ),
             ),
-            icon: Icon(
-              Icons.hot_tub,
-              color: Colors.black54,
+            icon: Image.asset(
+              "assets/images/trending.png",
+              height: 24.0,
+              width: 24.0,
             ),
           ),
           BottomNavigationBarItem(
@@ -65,9 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 11.0,
               ),
             ),
-            icon: Icon(
-              Icons.subscriptions,
-              color: Colors.black54,
+            icon: Image.asset(
+              "assets/images/subscriptions.png",
+              height: 24.0,
+              width: 24.0,
             ),
           ),
           BottomNavigationBarItem(
@@ -77,9 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 11.0,
               ),
             ),
-            icon: Icon(
-              Icons.email,
-              color: Colors.black54,
+            icon: Image.asset(
+              "assets/images/inbox.png",
+              height: 24.0,
+              width: 24.0,
             ),
           ),
           BottomNavigationBarItem(
@@ -89,19 +93,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 11.0,
               ),
             ),
-            icon: Icon(
-              Icons.folder,
-              color: Colors.black54,
+            icon: Image.asset(
+              "assets/images/library.png",
+              height: 24.0,
+              width: 24.0,
             ),
           ),
         ],
       ),
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            new AppBarWidget(),
-            new VideosListWidget(),
-          ],
+        child: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              new SliverAppBar(
+                elevation: 8.0,
+                flexibleSpace: Container(
+                  child: AppBarWidget(),
+                  height: 48.0,
+                ),
+                pinned: false,
+                backgroundColor: Colors.transparent,
+              ),
+            ];
+          },
+          body: new ListView.builder(
+            itemBuilder: (BuildContext context, int index) => new VideoItem(),
+            itemCount: 10,
+          ),
         ),
       ),
     );
