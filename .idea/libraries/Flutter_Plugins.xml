@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../flutter_windows_v0.3.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/video_player-0.6.1" />
+      <root url="file://$PROJECT_DIR$/../../flutter_windows_v0.3.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-0.3.1" />
+      <root url="file://$PROJECT_DIR$/../../flutter_windows_v0.3.1-beta/flutter/.pub-cache/hosted/pub.dartlang.org/device_info-0.2.1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

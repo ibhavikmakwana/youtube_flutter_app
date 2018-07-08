@@ -28,6 +28,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  PageController _pageController;
+  var _page = 0;
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -100,28 +103,160 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
+        onTap: navigationTapped,
+        currentIndex: _page,
       ),
-      body: SafeArea(
-        child: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return <Widget>[
-              new SliverAppBar(
-                elevation: 8.0,
-                flexibleSpace: Container(
-                  child: AppBarWidget(),
-                  height: 48.0,
-                ),
-                pinned: false,
-                backgroundColor: Colors.transparent,
+      body: PageView(
+        children: <Widget>[
+          SafeArea(
+            child: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  new SliverAppBar(
+                    elevation: 8.0,
+                    flexibleSpace: Container(
+                      child: AppBarWidget(),
+                      height: 48.0,
+                    ),
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ];
+              },
+              body: new ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                new VideoItem(),
+                itemCount: 10,
               ),
-            ];
-          },
-          body: new ListView.builder(
-            itemBuilder: (BuildContext context, int index) => new VideoItem(),
-            itemCount: 10,
+            ),
           ),
-        ),
+          SafeArea(
+            child: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  new SliverAppBar(
+                    elevation: 8.0,
+                    flexibleSpace: Container(
+                      child: AppBarWidget(),
+                      height: 48.0,
+                    ),
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ];
+              },
+              body: new ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                new VideoItem(),
+                itemCount: 10,
+              ),
+            ),
+          ),
+          SafeArea(
+            child: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  new SliverAppBar(
+                    elevation: 8.0,
+                    flexibleSpace: Container(
+                      child: AppBarWidget(),
+                      height: 48.0,
+                    ),
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ];
+              },
+              body: new ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                new VideoItem(),
+                itemCount: 10,
+              ),
+            ),
+          ),
+          SafeArea(
+            child: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  new SliverAppBar(
+                    elevation: 8.0,
+                    flexibleSpace: Container(
+                      child: AppBarWidget(),
+                      height: 48.0,
+                    ),
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ];
+              },
+              body: new ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                new VideoItem(),
+                itemCount: 10,
+              ),
+            ),
+          ),
+          SafeArea(
+            child: NestedScrollView(
+              headerSliverBuilder:
+                  (BuildContext context, bool innerBoxIsScrolled) {
+                return <Widget>[
+                  new SliverAppBar(
+                    elevation: 8.0,
+                    flexibleSpace: Container(
+                      child: AppBarWidget(),
+                      height: 48.0,
+                    ),
+                    pinned: false,
+                    backgroundColor: Colors.transparent,
+                  ),
+                ];
+              },
+              body: new ListView.builder(
+                itemBuilder: (BuildContext context, int index) =>
+                new VideoItem(),
+                itemCount: 10,
+              ),
+            ),
+          )
+        ],
+        controller: _pageController,
+        onPageChanged: onPageChanged,
+        physics: new NeverScrollableScrollPhysics(),
       ),
     );
+  }
+
+  ///
+  /// Bottom Navigation tap listener
+  ///
+  void navigationTapped(int page) {
+    _pageController.animateToPage(
+      page,
+      duration: Duration(milliseconds: 300),
+      curve: Curves.easeIn,
+    );
+  }
+
+  void onPageChanged(int page) {
+    setState(() {
+      this._page = page;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = new PageController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 }
