@@ -14,10 +14,10 @@ class _VideoDetailState extends State<VideoDetail> {
     return new Scaffold(
       body: SafeArea(
           child: ListView(
-        children: <Widget>[
-          detailVideoCardWidget(),
-        ],
-      )),
+            children: <Widget>[
+              detailVideoCardWidget(),
+            ],
+          )),
     );
   }
 
@@ -51,7 +51,22 @@ class _VideoDetailState extends State<VideoDetail> {
             children: <Widget>[
               titleWidget(),
               viewsWidget(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16.0,
+                  right: 16.0,
+                ),
+                child: Divider(),
+              ),
               optionsWidget(),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 16.0,
+                  right: 16.0,
+                ),
+                child: Divider(),
+              ),
+              channelWidget(),
             ],
           ),
         ],
@@ -159,6 +174,64 @@ class _VideoDetailState extends State<VideoDetail> {
               height: 24.0,
               width: 24.0,
             ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget channelWidget() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 16.0,
+            left: 8.0,
+            right: 8.0,
+            bottom: 8.0,
+          ),
+          child: CircleAvatar(
+            child: new FlutterLogo(),
+            backgroundColor: Colors.redAccent,
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  left: 8.0,
+                  right: 8.0,
+                ),
+                child: Text(
+                  "Avengers Infinity war",
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  maxLines: 2,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 8.0,
+                  right: 8.0,
+                  bottom: 8.0,
+                ),
+                child: Text(
+                  "Avengers Infinity war",
+                  softWrap: true,
+                  maxLines: 2,
+                  style: TextStyle(fontSize: 12.0),
+                ),
+              ),
+            ],
           ),
         ),
       ],
