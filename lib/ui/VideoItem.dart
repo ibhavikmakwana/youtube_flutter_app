@@ -86,6 +86,9 @@ class VideoItem extends StatelessWidget {
           ],
         ),
       ),
+      onTap: () {
+        Navigator.pushNamed(context, "/Video Detail");
+      },
     );
   }
 }

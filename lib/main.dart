@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_flutter_app/ui/VideoDetail.dart';
 import 'package:youtube_flutter_app/ui/VideoItem.dart';
 import 'package:youtube_flutter_app/ui/app_bar.dart';
+import 'package:youtube_flutter_app/utils/Strings.dart';
 
 void main() => runApp(new MyApp());
 
@@ -9,12 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      title: 'Flutter Demo',
-      theme: new ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: new ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: new MyHomePage(title: 'Flutter Demo Home Page'),
+        routes: <String, WidgetBuilder>{
+          Strings.videosDetailRoute: (BuildContext context) => VideoDetail(),
+        });
   }
 }
 

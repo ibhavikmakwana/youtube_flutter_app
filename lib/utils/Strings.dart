@@ -3,5 +3,5 @@ class Strings {
   static const String appName = "Youtube";
 
   ///routes
-  static const String videosDetail = "/Video Detail";
+  static const String videosDetailRoute = "/Video Detail";
 }
