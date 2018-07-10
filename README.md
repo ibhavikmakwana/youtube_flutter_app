@@ -2,7 +2,7 @@
 
 Youtube App Redesign in flutter
 
-# Preview
+## Preview
 
 | Home | Video detail |
 | ------------------ | --------------------------- |
@@ -20,7 +20,7 @@ Hit me on twitter [![Twitter URL](https://img.shields.io/twitter/url/http/shield
 [![Medium](https://img.shields.io/badge/Medium-ibhavikmakwana-green.svg)](https://medium.com/@ibhavikmakwana)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-ibhavikmakwana-blue.svg)](https://www.linkedin.com/in/ibhavikmakwana/)
 
-# Pull Requests
+## Pull Requests
 
 I welcome and encourage all pull requests. Here are some basic rules to follow to ensure timely addition of your request:
 
@@ -29,7 +29,7 @@ I welcome and encourage all pull requests. Here are some basic rules to follow t
   3. Please keep PR titles easy to read and descriptive of changes, this will make them easier to merge :)
   4. Check for existing [issues](https://github.com/ibhavikmakwana/youtube_flutter_app/issues) first, before filing an issue.
 
-# Donate
+## Donate
 
 > If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
 >
