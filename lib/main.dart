@@ -12,8 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
         title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
         theme: new ThemeData(
-          primarySwatch: Colors.red,
+          accentColor: Colors.white,
+          fontFamily: 'Raleway-Regular',
         ),
         home: new MyHomePage(title: 'Flutter Demo Home Page'),
         routes: <String, WidgetBuilder>{

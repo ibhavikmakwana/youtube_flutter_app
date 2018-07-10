@@ -18,15 +18,27 @@ class VideoItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: FlutterLogo(
-                size: 200.0,
-              ),
-              elevation: 8.0,
-              margin: EdgeInsets.zero,
+            Stack(
+              children: <Widget>[
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  color: Color.fromRGBO(2, 18, 37, 0.8),
+                  child: FlutterLogo(
+                    size: 200.0,
+                  ),
+                  elevation: 8.0,
+                  margin: EdgeInsets.zero,
+                ),
+                Icon(
+                  Icons.play_circle_outline,
+                  size: 64.0,
+                  color: Color.fromRGBO(27, 41, 58, 24.0),
+                )
+              ],
+              alignment: Alignment(0.0, 0.0),
+              fit: StackFit.passthrough,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
