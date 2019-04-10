@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class VideoDetail extends StatefulWidget {
-  VideoDetail({Key key, this.title}) : super(key: key);
-  final String title;
+  VideoDetail(this.index, {Key key}) : super(key: key);
+  final String index;
 
   @override
-  _VideoDetailState createState() => new _VideoDetailState();
+  _VideoDetailState createState() => _VideoDetailState();
 }
 
 class _VideoDetailState extends State<VideoDetail> {
@@ -13,7 +13,7 @@ class _VideoDetailState extends State<VideoDetail> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: ListView(
           children: <Widget>[
@@ -21,12 +21,12 @@ class _VideoDetailState extends State<VideoDetail> {
             middleAutoPlayWidgets(),
             Container(
               margin: EdgeInsets.only(
-                left: 16.0,
-                right: 16.0,
-                top: 8.0,
-                bottom: 8.0,
+                left: 16,
+                right: 16,
+                top: 8,
+                bottom: 8,
               ),
-              height: 150.0,
+              height: 150,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
@@ -46,39 +46,44 @@ class _VideoDetailState extends State<VideoDetail> {
   ///
   Widget detailVideoCardWidget() {
     return Card(
-      margin: EdgeInsets.all(16.0),
-      elevation: 8.0,
+      margin: EdgeInsets.all(16),
+      elevation: 8,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                ),
-                color: Color.fromRGBO(2, 18, 37, 0.8),
-                child: FlutterLogo(
-                  size: 200.0,
-                ),
-                elevation: 8.0,
-                margin: EdgeInsets.zero,
+          Hero(
+            tag: widget.index,
+            child: Material(
+              child: Stack(
+                children: <Widget>[
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    color: Color.fromRGBO(2, 18, 37, 0.8),
+                    child: FlutterLogo(
+                      size: 200,
+                    ),
+                    elevation: 8,
+                    margin: EdgeInsets.zero,
+                  ),
+                  IconButton(
+                    iconSize: 64,
+                    icon: Icon(
+                      Icons.play_circle_outline,
+                    ),
+                    onPressed: () {},
+                    color: Color.fromRGBO(27, 41, 58, 80),
+                  )
+                ],
+                alignment: Alignment(0, 0),
+                fit: StackFit.passthrough,
               ),
-              IconButton(
-                iconSize: 64.0,
-                icon: Icon(
-                  Icons.play_circle_outline,
-                ),
-                onPressed: () {},
-                color: Color.fromRGBO(27, 41, 58, 80.0),
-              )
-            ],
-            alignment: Alignment(0.0, 0.0),
-            fit: StackFit.passthrough,
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,16 +93,16 @@ class _VideoDetailState extends State<VideoDetail> {
               viewsWidget(),
               Padding(
                 padding: const EdgeInsets.only(
-                  left: 16.0,
-                  right: 16.0,
+                  left: 16,
+                  right: 16,
                 ),
                 child: Divider(),
               ),
               optionsWidget(),
               Padding(
                 padding: const EdgeInsets.only(
-                  left: 16.0,
-                  right: 16.0,
+                  left: 16,
+                  right: 16,
                 ),
                 child: Divider(),
               ),
@@ -115,9 +120,9 @@ class _VideoDetailState extends State<VideoDetail> {
   Widget titleWidget() {
     return Padding(
       padding: const EdgeInsets.only(
-        top: 16.0,
-        left: 8.0,
-        right: 8.0,
+        top: 16,
+        left: 8,
+        right: 8,
       ),
       child: Text(
         "Marvel Studios Avengers: Infinity War - Official Trailer",
@@ -125,7 +130,7 @@ class _VideoDetailState extends State<VideoDetail> {
         softWrap: true,
         maxLines: 2,
         style: TextStyle(
-          fontSize: 16.0,
+          fontSize: 16,
         ),
       ),
     );
@@ -136,12 +141,12 @@ class _VideoDetailState extends State<VideoDetail> {
   ///
   Widget viewsWidget() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Text(
         "83M views",
         softWrap: true,
         maxLines: 2,
-        style: TextStyle(fontSize: 12.0),
+        style: TextStyle(fontSize: 12),
       ),
     );
   }
@@ -151,63 +156,63 @@ class _VideoDetailState extends State<VideoDetail> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         InkWell(
-          borderRadius: BorderRadius.circular(64.0),
+          borderRadius: BorderRadius.circular(64),
           onTap: () {},
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Image.asset(
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
               "assets/images/thumbs_up.png",
               fit: BoxFit.cover,
-              height: 24.0,
-              width: 24.0,
+              height: 24,
+              width: 24,
             ),
           ),
         ),
         InkWell(
-          borderRadius: BorderRadius.circular(64.0),
+          borderRadius: BorderRadius.circular(64),
           onTap: () {},
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Image.asset(
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
               "assets/images/thumbs_down.png",
-              height: 24.0,
-              width: 24.0,
+              height: 24,
+              width: 24,
             ),
           ),
         ),
         InkWell(
-          borderRadius: BorderRadius.circular(64.0),
+          borderRadius: BorderRadius.circular(64),
           onTap: () {},
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Image.asset(
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
               "assets/images/share.png",
-              height: 24.0,
-              width: 24.0,
+              height: 24,
+              width: 24,
             ),
           ),
         ),
         InkWell(
-          borderRadius: BorderRadius.circular(64.0),
+          borderRadius: BorderRadius.circular(64),
           onTap: () {},
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Image.asset(
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
               "assets/images/download.png",
-              height: 24.0,
-              width: 24.0,
+              height: 24,
+              width: 24,
             ),
           ),
         ),
         InkWell(
-          borderRadius: BorderRadius.circular(64.0),
+          borderRadius: BorderRadius.circular(64),
           onTap: () {},
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Image.asset(
+            padding: const EdgeInsets.all(8),
+            child: Image.asset(
               "assets/images/add_playlist.png",
-              height: 24.0,
-              width: 24.0,
+              height: 24,
+              width: 24,
             ),
           ),
         ),
@@ -221,13 +226,13 @@ class _VideoDetailState extends State<VideoDetail> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(
-            top: 8.0,
-            left: 16.0,
-            right: 8.0,
-            bottom: 8.0,
+            top: 8,
+            left: 16,
+            right: 8,
+            bottom: 8,
           ),
           child: CircleAvatar(
-            child: new FlutterLogo(),
+            child: FlutterLogo(),
             backgroundColor: Colors.redAccent,
           ),
         ),
@@ -242,7 +247,7 @@ class _VideoDetailState extends State<VideoDetail> {
                 softWrap: true,
                 maxLines: 1,
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -250,17 +255,17 @@ class _VideoDetailState extends State<VideoDetail> {
                 "Avengers Infinity war",
                 softWrap: true,
                 maxLines: 1,
-                style: TextStyle(fontSize: 12.0),
+                style: TextStyle(fontSize: 12),
               ),
             ],
           ),
         ),
         Container(
-          margin: EdgeInsets.only(right: 16.0),
+          margin: EdgeInsets.only(right: 16),
           child: FlatButton.icon(
             icon: Icon(
               Icons.play_arrow,
-              size: 16.0,
+              size: 16,
               color: Color.fromRGBO(231, 0, 3, 0.8),
             ),
             label: Text(
@@ -270,7 +275,7 @@ class _VideoDetailState extends State<VideoDetail> {
               ),
             ),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(28.0),
+              borderRadius: BorderRadius.circular(28),
             ),
             onPressed: () {},
           ),
@@ -285,8 +290,8 @@ class _VideoDetailState extends State<VideoDetail> {
   Widget middleAutoPlayWidgets() {
     return Container(
       margin: EdgeInsets.only(
-        left: 16.0,
-        right: 16.0,
+        left: 16,
+        right: 16,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -295,7 +300,7 @@ class _VideoDetailState extends State<VideoDetail> {
           Text(
             "Up next",
             style: TextStyle(
-              fontSize: 16.0,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -304,7 +309,7 @@ class _VideoDetailState extends State<VideoDetail> {
               Text(
                 "Autoplay",
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -328,20 +333,20 @@ class _VideoDetailState extends State<VideoDetail> {
     return Container(
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(12),
         ),
         color: Color.fromRGBO(2, 18, 37, 0.8),
         child: FlutterLogo(
-          size: 100.0,
+          size: 100,
         ),
-        elevation: 8.0,
+        elevation: 8,
         margin: EdgeInsets.zero,
       ),
-      height: 100.0,
-      width: 200.0,
+      height: 100,
+      width: 200,
       padding: EdgeInsets.only(
-        left: 8.0,
-        right: 8.0,
+        left: 8,
+        right: 8,
       ),
     );
   }
@@ -349,7 +354,7 @@ class _VideoDetailState extends State<VideoDetail> {
   Widget commentWidget() {
     return Card(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Container(
         child: ListView(
@@ -360,7 +365,7 @@ class _VideoDetailState extends State<VideoDetail> {
               children: <Widget>[
                 FlutterLogo(),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Text('Add a public comment...'),
                 )
               ],
@@ -374,8 +379,8 @@ class _VideoDetailState extends State<VideoDetail> {
   Widget commentTextLabelWidget() {
     return Container(
       margin: EdgeInsets.only(
-        left: 16.0,
-        right: 16.0,
+        left: 16,
+        right: 16,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -384,22 +389,22 @@ class _VideoDetailState extends State<VideoDetail> {
           Row(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Text(
                   "Comments",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.normal,
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8),
                 child: Text(
                   "256",
                   style: TextStyle(
-                    fontSize: 16.0,
+                    fontSize: 16,
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.bold,
                   ),
