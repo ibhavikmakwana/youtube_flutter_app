@@ -25,9 +25,8 @@ class VideoItem extends StatelessWidget {
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         child: Card(
           margin: EdgeInsets.zero,
-          elevation: 8,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -37,21 +36,20 @@ class VideoItem extends StatelessWidget {
                 tag: index.toString(),
                 child: Stack(
                   children: <Widget>[
-                    Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        color: Color.fromRGBO(2, 18, 37, 0.8),
+                        child: FlutterLogo(
+                          size: 200,
+                        ),
+                        margin: EdgeInsets.zero,
                       ),
-                      color: Color.fromRGBO(2, 18, 37, 0.8),
-                      child: FlutterLogo(
-                        size: 200,
-                      ),
-                      elevation: 8,
-                      margin: EdgeInsets.zero,
                     ),
                     Icon(
                       Icons.play_circle_outline,
                       size: 64,
-                      color: Color.fromRGBO(27, 41, 58, 24),
+                      color: Colors.white,
                     )
                   ],
                   alignment: Alignment(0, 0),
