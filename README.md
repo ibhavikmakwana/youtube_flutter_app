@@ -1,12 +1,16 @@
 # Flutter Youtube App Redesign
 
-Youtube App Redesign in flutter
+Youtube App Redesign in flutter, contains the animation of the Picture in picture mode animation and Floating app bar.
 
 ## Preview
 
 | Home | Video detail |
-| ------------------ | --------------------------- |
-| <img src="./preview/home.jpg" height="400" alt="Screenshot"/>  | <img src="./preview/detail.jpg" height="400" alt="Screenshot"/> |
+| ------------------ | ------------------ |
+| <img src="./preview/home.png" height="400" alt="Screenshot"/>  | <img src="./preview/detail.png" height="400" alt="Screenshot"/> |
+
+| Floating Appbar | PIP Animation |
+| ------------------ | ------------------ | 
+| <img src="./preview/floating_app_bar.gif" height="400" alt="Screenshot"/> | <img src="./preview/pip.gif" height="400" alt="Screenshot"/> |
 
 
 ## Getting Started
