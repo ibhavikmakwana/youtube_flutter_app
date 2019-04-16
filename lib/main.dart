@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_flutter_app/home_page.dart';
+import 'package:youtube_flutter_app/state_container.dart';
 import 'package:youtube_flutter_app/ui/VideoDetail.dart';
 import 'package:youtube_flutter_app/ui/VideoItem.dart';
+import 'package:youtube_flutter_app/ui/youtube_pip.dart';
 import 'package:youtube_flutter_app/utils/Strings.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(StateContainer(child: MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

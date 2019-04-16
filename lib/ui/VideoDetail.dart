@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_flutter_app/state_container.dart';
 
 class VideoDetail extends StatefulWidget {
   VideoDetail(this.index, {Key key}) : super(key: key);
@@ -8,35 +9,138 @@ class VideoDetail extends StatefulWidget {
   _VideoDetailState createState() => _VideoDetailState();
 }
 
-class _VideoDetailState extends State<VideoDetail> {
+class _VideoDetailState extends State<VideoDetail>
+    with SingleTickerProviderStateMixin {
   var _giveVerse = true;
+  StateContainerState container;
+  Animation<double> height;
+  Animation<double> width;
+  bool visible = true;
+  Animation<double> opacity;
+  Animation<double> position;
+  Animation<double> bottomPosition;
+  AnimationController controller;
+  double maxWidth;
+  double maxHeight = 200;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          children: <Widget>[
-            detailVideoCardWidget(),
-            middleAutoPlayWidgets(),
-            Container(
-              margin: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 8,
-                bottom: 8,
-              ),
-              height: 150,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  horizontalVideoList(),
-                  horizontalVideoList(),
-                ],
-              ),
-            ),
-          ],
+    container = StateContainer.of(context);
+
+    Widget _buildAnimation(BuildContext context, Widget child) {
+      height = Tween<double>(
+        begin: MediaQuery.of(context).size.height -
+            MediaQuery.of(context).padding.top,
+        end: 75.0,
+      ).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Interval(
+            0.0,
+            0.500,
+            curve: Curves.easeInOutSine,
+          ),
         ),
+      );
+
+      width = Tween<double>(
+        begin: MediaQuery.of(context).size.width,
+        end: MediaQuery.of(context).size.width / 3,
+      ).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Interval(
+            0.0,
+            0.500,
+            curve: Curves.easeInOutSine,
+          ),
+        ),
+      );
+
+      position = Tween<double>(
+        begin: 0.0,
+        end: 8.0,
+      ).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Interval(
+            0.0,
+            0.500,
+            curve: Curves.easeInOutSine,
+          ),
+        ),
+      );
+
+      bottomPosition = Tween<double>(
+        begin: 0.0,
+        end: 72,
+      ).animate(
+        CurvedAnimation(
+          parent: controller,
+          curve: Interval(
+            0.0,
+            0.500,
+            curve: Curves.easeInOutSine,
+          ),
+        ),
+      );
+
+      opacity = Tween<double>(
+        begin: 1.0,
+        end: 0.0,
+      ).animate(
+        CurvedAnimation(
+          reverseCurve: Curves.easeIn,
+          parent: controller,
+          curve: Interval(
+            0.0,
+            0.200,
+            curve: Curves.ease,
+          ),
+        ),
+      );
+
+      return Positioned(
+        bottom: bottomPosition.value,
+        right: position.value,
+        left: position.value,
+        child: Container(
+          width: width.value,
+          height: height.value,
+          color: Colors.transparent,
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                child: detailVideoCardWidget(
+                  MediaQuery.of(context).size.width,
+                  height.value,
+                  BoxConstraints(maxHeight: 200, minHeight: 75),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: AnimatedBuilder(
+        builder: _buildAnimation,
+        animation: controller,
       ),
     );
   }
@@ -44,72 +148,104 @@ class _VideoDetailState extends State<VideoDetail> {
   ///
   /// Detail Video card
   ///
-  Widget detailVideoCardWidget() {
-    return Card(
-      margin: EdgeInsets.all(16),
-      elevation: 8,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Hero(
-            tag: widget.index,
-            child: Material(
-              child: Stack(
-                children: <Widget>[
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+  Widget detailVideoCardWidget(
+      double width, double height, BoxConstraints boxConstraints) {
+    return Material(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            GestureDetector(
+              onVerticalDragEnd: (details) {
+                print("Y: ${details.velocity.pixelsPerSecond.dy}");
+                if (details.velocity.pixelsPerSecond.dy > 0) {
+                  controller.forward();
+                  setState(() {
+                    visible = !visible;
+                  });
+                } else if (details.velocity.pixelsPerSecond.dy < 0) {
+                  controller.reverse();
+                  setState(() {
+                    visible = !visible;
+                  });
+                }
+              },
+              child: Container(
+                constraints: boxConstraints,
+                width: width,
+                height: height,
+                child: Stack(
+                  fit: StackFit.loose,
+                  children: <Widget>[
+                    Container(
+                      width: width,
+                      color: Color.fromRGBO(2, 18, 37, 0.8),
+                      child: FlutterLogo(
+                        size: 200,
+                      ),
                     ),
-                    color: Color.fromRGBO(2, 18, 37, 0.8),
-                    child: FlutterLogo(
-                      size: 200,
+                    Center(
+                      child: Icon(
+                        Icons.play_circle_outline,
+                        size: 64,
+                        color: Colors.white,
+                      ),
                     ),
-                    elevation: 8,
-                    margin: EdgeInsets.zero,
-                  ),
-                  IconButton(
-                    iconSize: 64,
-                    icon: Icon(
-                      Icons.play_circle_outline,
-                    ),
-                    onPressed: () {},
-                    color: Color.fromRGBO(27, 41, 58, 80),
-                  )
-                ],
-                alignment: Alignment(0, 0),
-                fit: StackFit.passthrough,
+                  ],
+                ),
               ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              titleWidget(),
-              viewsWidget(),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  right: 16,
+            Visibility(
+              visible: opacity.value == 1,
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 500),
+                opacity: opacity.value,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    titleWidget(),
+                    viewsWidget(),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: Divider(),
+                    ),
+                    optionsWidget(),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                      ),
+                      child: Divider(),
+                    ),
+                    channelWidget(),
+                    middleAutoPlayWidgets(),
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                        top: 8,
+                        bottom: 8,
+                      ),
+                      height: 150,
+                      child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          horizontalVideoList(),
+                          horizontalVideoList(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-                child: Divider(),
               ),
-              optionsWidget(),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                ),
-                child: Divider(),
-              ),
-              channelWidget(),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -419,5 +555,15 @@ class _VideoDetailState extends State<VideoDetail> {
         ],
       ),
     );
+  }
+
+  Future<bool> _onWillPop() {
+    if (container.selectedIndex > -1) {
+      if (controller.isCompleted) {
+        Navigator.of(context).pop(true);
+      } else {
+        controller.forward();
+      }
+    }
   }
 }

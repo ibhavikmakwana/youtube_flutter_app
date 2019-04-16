@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:youtube_flutter_app/state_container.dart';
 import 'package:youtube_flutter_app/ui/VideoDetail.dart';
-
 
 class VideoItem extends StatelessWidget {
   VideoItem(this.index);
@@ -13,10 +13,13 @@ class VideoItem extends StatelessWidget {
   }
 
   Widget _buildTiles(BuildContext context) {
+    final container = StateContainer.of(context);
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => VideoDetail(index.toString())));
+        container.selectedIndex = -1;
+        container.updateSelectedIndex(index: index);
+//        Navigator.of(context).push(
+//            MaterialPageRoute(builder: (_) => VideoDetail(index.toString())));
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 8),

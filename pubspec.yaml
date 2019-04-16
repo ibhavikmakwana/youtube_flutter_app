@@ -4,11 +4,7 @@ description: A Flutter application.
 dependencies:
   flutter:
     sdk: flutter
-  video_player: 0.6.1
-  device_info: 0.2.1
-  connectivity: 0.3.1
   cupertino_icons: ^0.1.2
-  line_awesome_icons: ^1.0.4+1
   flutter_svg: ^0.12.4
 
 dev_dependencies:
